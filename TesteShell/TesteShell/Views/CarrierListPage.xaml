@@ -3,10 +3,11 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="TesteShell.Views.CarrierListPage">
     <ContentPage.Content>
-        <StackLayout Spacing="10">
+        <StackLayout Spacing="10"
+                     Padding="10">
             <StackLayout>
                 <StackLayout.GestureRecognizers>
-                    <TapGestureRecognizer Tapped="OnTapped"/>
+                    <TapGestureRecognizer Command="{Binding TapCommand}"/>
                 </StackLayout.GestureRecognizers>
 
                 <Label Text="Carrier1"
@@ -15,7 +16,7 @@
             </StackLayout>
             <StackLayout>
                 <StackLayout.GestureRecognizers>
-                    <TapGestureRecognizer Tapped="OnTapped"/>
+                    <TapGestureRecognizer Command="{Binding TapCommand}"/>
                 </StackLayout.GestureRecognizers>
 
                 <Label Text="Carrier2"

@@ -5,23 +5,16 @@ using TesteShell.ViewModels;
 using TesteShell.Views;
 using Xamarin.Essentials;
 using Xamarin.Forms;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace TesteShell
 {
     public partial class AppShell : Xamarin.Forms.Shell
     {
-        public AppShell()
+        public AppShell(AppShellViewModel appShellViewModel = null)
         {
             InitializeComponent();
-        }
-
-        private async void OnMenuItemClicked(object sender, EventArgs e)
-        {
-            CacheSettings.LoggedIn = false;
-
-            SecureStorage.RemoveAll();
-
-            App.Current.MainPage = new LoginPage();
+            BindingContext = appShellViewModel;
         }
     }
 }

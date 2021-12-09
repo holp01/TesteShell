@@ -4,6 +4,7 @@ using System.Text;
 using TesteShell.Cache;
 using TesteShell.Views;
 using Xamarin.Forms;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace TesteShell.ViewModels
 {
@@ -19,7 +20,7 @@ namespace TesteShell.ViewModels
         private void NextAction()
         {
             CacheSettings.HasWizard = false;
-            App.Current.MainPage = new LoginPage();
+            App.Current.MainPage = Startup.ServiceProvider.GetService<LoginPage>();
         }
     }
 }

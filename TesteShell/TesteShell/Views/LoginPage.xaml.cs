@@ -12,10 +12,10 @@ namespace TesteShell.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class LoginPage : ContentPage
     {
-        public LoginPage()
+        public LoginPage(LoginViewModel loginView = null)
         {
             InitializeComponent();
-            this.BindingContext = new LoginViewModel();
+            this.BindingContext = loginView;
         }
     }
 }

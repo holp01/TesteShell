@@ -6,7 +6,8 @@
              x:DataType="viewsmodel:LanguageViewModel">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
+            <Label Text="LANGUAGE SCREEN"
+                   TextColor="Orange"
                 VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand" />
             <Button Command="{Binding NextCommand}"

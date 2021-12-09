@@ -10,9 +10,9 @@ namespace TesteShell
     public partial class App : Application
     {
 
-        public App()
+        public App(App app)
         {
-            InitializeComponent(); 
+            InitializeComponent();
             RegisterRoutes();
 
             DependencyService.Register<MockDataStore>();
@@ -41,11 +41,16 @@ namespace TesteShell
         private void RedirectFirstPage()
         {
             if (CacheSettings.HasWizard)
-                MainPage = new LanguagePage();
+                MainPage = Startup.ServiceProvider.GetService<LanguagePage>();
             else if (CacheSettings.LoggedIn)
-                MainPage = new AppShell();
+            {
+                if (string.IsNullOrEmpty(CacheSettings.UserSelectedCarrier)) // simulates user has more than 1 carrier
+                    MainPage = Startup.ServiceProvider.GetService<CarrierListPage>();
+                else
+                    MainPage = Startup.ServiceProvider.GetService<AppShell>();
+            }
             else
-                MainPage = new LoginPage();
+                MainPage = Startup.ServiceProvider.GetService<LoginPage>();
         }
     }
 }
