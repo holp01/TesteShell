@@ -30,14 +30,14 @@ namespace TesteShell
             //Pages
             services.AddTransient<LanguagePage>();
             services.AddTransient<LoginPage>();
-            services.AddSingleton<CarrierListPage>();
+            services.AddTransient<CarrierListPage>();
             services.AddTransient<AppShell>();
             services.AddTransient<AboutPage>();
 
             //ViewModels
             services.AddTransient<LanguageViewModel>();
             services.AddTransient<LoginViewModel>();
-            services.AddSingleton<CarrierListViewModel>();
+            services.AddTransient<CarrierListViewModel>();
             services.AddSingleton<AppShellViewModel>();
             services.AddTransient<AboutViewModel>();
         }

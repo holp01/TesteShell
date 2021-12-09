@@ -43,12 +43,7 @@ namespace TesteShell
             if (CacheSettings.HasWizard)
                 MainPage = Startup.ServiceProvider.GetService<LanguagePage>();
             else if (CacheSettings.LoggedIn)
-            {
-                if (string.IsNullOrEmpty(CacheSettings.UserSelectedCarrier)) // simulates user has more than 1 carrier
-                    MainPage = Startup.ServiceProvider.GetService<CarrierListPage>();
-                else
-                    MainPage = Startup.ServiceProvider.GetService<AppShell>();
-            }
+                MainPage = Startup.ServiceProvider.GetService<AppShell>();
             else
                 MainPage = Startup.ServiceProvider.GetService<LoginPage>();
         }

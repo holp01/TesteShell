@@ -1,28 +1,43 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="TesteShell.Views.CarrierListPage">
-    <ContentPage.Content>
-        <StackLayout Spacing="10"
-                     Padding="10">
-            <StackLayout>
-                <StackLayout.GestureRecognizers>
-                    <TapGestureRecognizer Command="{Binding TapCommand}"/>
-                </StackLayout.GestureRecognizers>
-
-                <Label Text="Carrier1"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand"/>
-            </StackLayout>
-            <StackLayout>
-                <StackLayout.GestureRecognizers>
-                    <TapGestureRecognizer Command="{Binding TapCommand}"/>
-                </StackLayout.GestureRecognizers>
-
-                <Label Text="Carrier2"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand"/>
-            </StackLayout>
+             x:Class="TesteShell.Views.CarrierListPage"
+             Title="Change Carrier"
+             x:Name="this">
+    <Grid RowSpacing="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <StackLayout Padding="5,10">
+            <ListView HasUnevenRows="True"
+                      Grid.Row="2"
+                      ItemsSource="{Binding CarrierList, Mode=OneWay}"
+                      SeparatorVisibility="None"
+                      SelectionMode="None">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Frame Padding="0"
+                                   Margin="6,6,6,0">
+                                <StackLayout Padding="5,15"
+                                         Spacing="10">
+                                    <StackLayout.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding Source={x:Reference this},Path=BindingContext.TapCommand}"/>
+                                    </StackLayout.GestureRecognizers>
+                                    
+                                    <Label Text="{Binding . ,StringFormat='{0}'}"
+                                           TextColor="Black"/>
+                                </StackLayout>
+                            </Frame>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
         </StackLayout>
-    </ContentPage.Content>
+    </Grid>
 </ContentPage>

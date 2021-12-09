@@ -4,22 +4,45 @@ using System.Text;
 using TesteShell.Cache;
 using Xamarin.Forms;
 using Microsoft.Extensions.DependencyInjection;
+using System.Collections.ObjectModel;
 
 namespace TesteShell.ViewModels
 {
-    public class CarrierListViewModel
+    public class CarrierListViewModel : BaseViewModel
     {
         public Command TapCommand { get; private set; }
 
+        private ObservableCollection<string> _CarrierListe;
+        public ObservableCollection<string> CarrierList
+        {
+            get => _CarrierListe;
+            set
+            {
+                _CarrierListe = value;
+                OnPropertyChanged();
+            }
+        }
+
         public CarrierListViewModel()
         {
+            CheckRedirectPage();
             TapCommand = new Command(ChooseCarrierAction);
         }
 
-        public void ChooseCarrierAction()
+        private async void CheckRedirectPage()
         {
-            CacheSettings.UserSelectedCarrier = "Carrier1";
-            App.Current.MainPage = Startup.ServiceProvider.GetService<AppShell>();
+            if (!string.IsNullOrEmpty(CacheSettings.UserSelectedCarrier)) // simulates having one Carrier or opening app with login done
+                await Shell.Current.GoToAsync($"///AboutPage"); //replaces the navigation stack with the Main Page
+            else //doesnt replace the navigation stack and stays in the CarrierList
+            {
+                CarrierList = new ObservableCollection<string>() { "Carrier 1", "Carrier 2" };
+            }
+        }
+
+        public async void ChooseCarrierAction()
+        {
+            CacheSettings.UserSelectedCarrier = "Carrier 1";
+            await Shell.Current.GoToAsync($"///AboutPage");
         }
     }
 }

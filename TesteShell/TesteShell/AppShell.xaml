@@ -5,6 +5,10 @@
        Title="TesteShell"
        x:Class="TesteShell.AppShell">
     
+    <FlyoutItem Title="ChangeCarrier" Icon="icon_about.png">
+        <ShellContent Route="CarrierListPage" ContentTemplate="{DataTemplate local:CarrierListPage}" />
+    </FlyoutItem>
+    
     <FlyoutItem Title="About" Icon="icon_about.png">
         <ShellContent Route="AboutPage" ContentTemplate="{DataTemplate local:AboutPage}" />
     </FlyoutItem>

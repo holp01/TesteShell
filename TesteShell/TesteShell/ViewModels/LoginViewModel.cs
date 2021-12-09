@@ -19,11 +19,9 @@ namespace TesteShell.ViewModels
 
         private void OnLoginClicked(object obj)
         {
+            //Microsoft login e pedidos em brackground _=Task.Run(()=> {})
             CacheSettings.LoggedIn = true;
-            //if (string.IsNullOrEmpty(CacheSettings.UserSelectedCarrier)) // simulate more than one carrier for him
-            //    App.Current.MainPage = Startup.ServiceProvider.GetService<CarrierListPage>();
-            //else
-                App.Current.MainPage = Startup.ServiceProvider.GetService<AppShell>();
+            App.Current.MainPage = Startup.ServiceProvider.GetService<AppShell>();
         }
     }
 }

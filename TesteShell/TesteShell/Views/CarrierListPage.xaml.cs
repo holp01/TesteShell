@@ -12,10 +12,10 @@ namespace TesteShell.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class CarrierListPage : ContentPage
     {
-        public CarrierListPage(CarrierListViewModel carrierListViewModel = null)
+        public CarrierListPage()
         {
             InitializeComponent();
-            this.BindingContext = carrierListViewModel;
+            this.BindingContext = Startup.ServiceProvider.GetService<CarrierListViewModel>();
         }
     }
 }
